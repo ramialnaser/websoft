@@ -1,6 +1,4 @@
-/*
- * Comments are written as C++ style. 
- */
+
 html {
     overflow-y: scroll;
 }
@@ -9,4 +7,16 @@ body {
     margin: 8px auto;
     background: #fff;
     width: 700px;
+}
+.duck{
+  width: 128px;
+  height: 128px;
+  border: 1px solid black;
+  background-image: url(../img/duck.png);
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.7s;
+
 }
