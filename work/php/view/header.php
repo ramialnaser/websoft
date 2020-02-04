@@ -5,6 +5,8 @@ echo '<header>
         <a href="report.php">Report</a>
         <a href="about.php">About</a>
         <a href="search.php">Search</a>
+        <a href="update.html">Update</a>
+
       </nav>
 </header>'
 ?>
