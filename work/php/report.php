@@ -86,7 +86,11 @@ level three.</p>
 
 <section>
 <h2>S05</h2>
-<p>Here is the text for this section.</p>
+<p>Well since it's completely new to me, I had some difficulties but at the end I get it work.
+Comparing PHP to java, well there is huge difference to me, the structures and the syntax but
+I can't say that it was hard to code with it. I aim for grade 5 for now. Regarding learing,
+well everthing was new to me, so I learned everything I did, especially the connection with database
+,it wasn't really different from Java but I had some problems to get it work.</p>
 </section>
 
 <section>
