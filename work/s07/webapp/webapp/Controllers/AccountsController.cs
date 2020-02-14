@@ -6,7 +6,7 @@ using webapp.Services;
 namespace webapp.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/accounts")]
     public class AccountsController : ControllerBase
     {
         public AccountsController(JsonFileAccountService accountService)

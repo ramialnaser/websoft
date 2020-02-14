@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -8,9 +8,9 @@ using webapp.Models;
 
 namespace webapp.Services
 {
-    public class JsonFileAccountService
+    public class SpecificAccountService
     {
-        public JsonFileAccountService(IWebHostEnvironment webHostEnvironment)
+        public SpecificAccountService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
@@ -23,7 +23,7 @@ namespace webapp.Services
                 "\\work\\s07\\data\\account.json"); }
         }
 
-        public IEnumerable<Account> GetAccounts()
+        public IEnumerable<Account> GetSpecAccounts()
         {
             using (var jsonFileReader = File.OpenText(JsonFileName))
             {
@@ -32,6 +32,7 @@ namespace webapp.Services
                     {
                         PropertyNameCaseInsensitive = true
                     });
+
             }
         }
     }
