@@ -1,4 +1,5 @@
 ﻿
+using console;
 using ConsoleTables;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,13 @@ namespace test
 {
     class Program
     {
-        
+        private AccountManger accountManger;
         static void Main(string[] args)
         {
+            Program pr = new Program();
+            pr.accountManger = new AccountManger();
 
+            
             bool showMenu = true;
             do
             {
@@ -24,21 +28,28 @@ namespace test
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1) View Account");
                 Console.WriteLine("2) View Specific Acount");
-                Console.WriteLine("3) Exit");
+                Console.WriteLine("3) Search");
+                Console.WriteLine("4) Move Money");
+                Console.WriteLine("5) Exit");
                 Console.Write("\r\nSelect an option: ");
                 num = Console.ReadLine();
 
                 switch (num)
                 {
                     case "1":
-                        ReadFile();
+                        pr.ReadFile();
                         
                         break;
                     case "2":
-                        ReadSpecificAccount();
+                        pr.ReadSpecificAccount();
                         break;
 
-                                            
+                    case "3":
+                        pr.Search();
+                        break;
+                    case "4":
+                        pr.transfer();
+                        break;
                     default:
                         showMenu = false;
                         break;
@@ -46,70 +57,46 @@ namespace test
             } while (showMenu);
             
         }
-        private static void ReadFile()
+        private void ReadFile()
         {
 
-            var accounts = ReadAccounts();
-            var table = new ConsoleTable("Number", "Balance", "Label", "Owner");
-
-
-            foreach (var account in accounts)
-            {
-                table.AddRow(account.Number, account.Balance, account.Label, account.Owner);
-            }
-
-            table.Write();
+            accountManger.ReadFile();
 
         }
-        private static void ReadSpecificAccount()
+        private void ReadSpecificAccount()
         {
             // List<Account> list = new List<Account>();
             Console.Write("\nAccount number > ");
             string input = Console.ReadLine();
             int number;
             Int32.TryParse(input, out number);
-            
-            var accounts = ReadAccounts();
-            
+
+            accountManger.ReadSpecificAccount(number);
 
 
-            var table = new ConsoleTable("Number", "Balance", "Label", "Owner");
-            foreach (var account in accounts)
-            {
-
-                if (account.Number == number)
-                {
-                    
-                    table.AddRow(account.Number, account.Balance, account.Label, account.Owner);
-                }
-                
-            }
-
-            table.Write();
-            
         }
-        static IEnumerable<Account> ReadAccounts()
+
+        private void Search()
         {
-            String file = "C:\\Users\\ramin\\Desktop\\websoft\\work\\s07\\data\\account.json";
+            // List<Account> list = new List<Account>();
+            Console.Write("\nEntre a string > ");
+            string search = Console.ReadLine().Trim();
+            Console.WriteLine("");
 
-            using (StreamReader r = new StreamReader(file))
-            {
-                string data = r.ReadToEnd();
-                
+            accountManger.Search(search);
 
-                var json = JsonSerializer.Deserialize<Account[]>(
-                    data,
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    }
-                );
 
-                return json;
-            }
         }
+        private void transfer()
+        {
+            Console.Write("Please specify the sender's account number: ");
+            int senderNum = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Please specify the receiver's account number: ");
+            int receiverNum = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Please specify the amount to be moved: ");
+            int amount = Convert.ToInt32(Console.ReadLine());
 
-        
-       
+            accountManger.ProcessTransfer(senderNum, receiverNum, amount);
+        }
     }
 }
