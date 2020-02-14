@@ -49,24 +49,15 @@ namespace webapp
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
                 endpoints.MapGet("accounts", (context) => {
                     var accounts = app.ApplicationServices.GetService<JsonFileAccountService>().GetAccounts();
                     var json = JsonSerializer.Serialize<IEnumerable<Account>>(accounts);
-                    return context.Response.WriteAsync(json);
-                });
-                endpoints.MapControllers();
-            });
-            
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-                endpoints.MapGet("accounts/{number}", (context) => {
-                    var accounts = app.ApplicationServices.GetService<SpecificAccountService>().GetSpecAccounts();
-                    var json = JsonSerializer.Serialize<IEnumerable<Account>>(accounts);
+                   
+                    
                     return context.Response.WriteAsync(json);
                 });
                 endpoints.MapControllers();
