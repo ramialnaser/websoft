@@ -1,0 +1,21 @@
+﻿@page
+@model MoveModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<style>
+</style>
+<div class="text-center">
+    <h1 class="display-4">Transfer</h1>
+
+</div>
+@using (Html.BeginForm( FormMethod.Post))
+{
+    @Html.TextBoxFor(model => model.SenderId)
+    @Html.ValidationMessageFor(model => model.SenderId)
+    @Html.TextBoxFor(model => model.ReceiverId)
+    @Html.ValidationMessageFor(model => model.ReceiverId)
+    @Html.TextBoxFor(model => model.amount)
+    @Html.ValidationMessageFor(model => model.amount)
+    <button type="submit">Move</button>
+}

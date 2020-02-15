@@ -52,5 +52,58 @@ namespace webapp.Services
             }
             return null;
         }
+        public Account moveMoney(int senderId,int receiverId,int amount)
+        {
+            var accounts = GetAccounts();
+            if (checkId(senderId) && checkId(receiverId) && (senderId != receiverId))
+            {
+                foreach (var account in accounts)
+                {
+                    if (account.Number == senderId)
+                    {
+                        account.Balance -= amount;
+                        
+
+                    }
+                    if (account.Number == receiverId)
+                    {
+                        account.Balance += amount;
+                        
+                    }
+                }
+                SaveAccounts(accounts);
+            }
+            return null;
+
+        }
+        public bool checkId(int number)
+        {
+            bool check = false;
+            var accounts = GetAccounts();
+            foreach (var account in accounts)
+            {
+                check = true;
+            }
+            return check;
+        }
+        static void SaveAccounts(IEnumerable<Account> accounts)
+        {
+           String file = "C:\\Users\\ramin\\Desktop\\websoft\\work\\s07\\data\\account.json";
+
+             using (var outputStream = File.OpenWrite(file))
+             {
+                 JsonSerializer.Serialize<IEnumerable<Account>>(
+                    new Utf8JsonWriter(
+                        outputStream,
+                        new JsonWriterOptions
+                        {
+                             SkipValidation = true,
+                            Indented = true
+                        }
+                        ),
+                        accounts
+                    );
+                }
+        }
     }
 }
