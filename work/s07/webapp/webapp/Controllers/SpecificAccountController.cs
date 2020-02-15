@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using webapp.Models;
 using webapp.Services;
@@ -11,31 +13,26 @@ namespace webapp.Controllers
     public class SpecificAccountController : ControllerBase
     {
         
-        public SpecificAccountController(SpecificAccountService accountService)
+        public SpecificAccountController(JsonFileAccountService accountService)
         {
             AccountService = accountService;
         }
 
-        public SpecificAccountService AccountService { get; }
+        public JsonFileAccountService AccountService { get; }
 
         [HttpGet("api/accounts/{number}")]
-        public IEnumerable<Account> Get(int number)
+        public String Get(int number)
         {
-            
-            var accounts = AccountService.GetSpecAccounts();
-            List<Account> aco = new List<Account>();
-            foreach (var account in accounts)
+            String ms = "{Not found}";
+            var account = AccountService.GetAccountBynumber(number);
+            if (account!=null)
             {
-                if (account.Number == number)
-                {
-
-                    aco.Add(account);
-                }
+                return account.ToString();
             }
-
-            return aco;
+            return ms;
             
         }
-
+       
+        
     }
 }

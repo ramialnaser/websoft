@@ -13,28 +13,30 @@ h2 {
     <h1 class="display-4">Welcome</h1>
     
 </div>
-<tr>
-    <th>Number</th>
-    <th>Balance</th>
-    <th>Label</th>
-    <th>Owner</th>
-
-</tr>
-@foreach (var account in Model.Accounts)
-{
-    //<h2>@account.Number @account.Balance   @account.Label  @account.Owner</h2>
-
-
-
 <table>
-  
     <tr>
-        <td width="60">@account.Number</td>
-        <td width="60">@account.Balance</td>
-        <td width="60">@account.Label</td>
-        <td width="60">@account.Owner</td>
+        <th>Number</th>
+        <th>Balance</th>
+        <th>Label</th>
+        <th>Owner</th>
 
     </tr>
- 
+    @foreach (var account in Model.Accounts)
+    {
+        //<h2>@account.Number @account.Balance   @account.Label  @account.Owner</h2>
+
+
+
+
+
+        <tr>
+            <td width="60">@account.Number</td>
+            <td width="60">@account.Balance</td>
+            <td width="60">@account.Label</td>
+            <td width="60">@account.Owner</td>
+
+        </tr>
+
+
+    }
 </table>
-}

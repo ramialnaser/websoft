@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,23 @@ namespace webapp.Services
                         PropertyNameCaseInsensitive = true
                     });
             }
+        }
+        public Account GetAccountBynumber(int number)
+        {
+            var accounts = GetAccounts();
+            
+            
+            foreach (var account in accounts)
+            {
+                if (account.Number == number)
+                {
+
+                   // aco.Add(accounts.ToString);
+                    return account;
+                }
+
+            }
+            return null;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace webapp
             services.AddRazorPages();
             services.AddControllers();
             services.AddTransient<JsonFileAccountService>();
-            services.AddTransient<SpecificAccountService>();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,13 +53,7 @@ namespace webapp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-                endpoints.MapGet("accounts", (context) => {
-                    var accounts = app.ApplicationServices.GetService<JsonFileAccountService>().GetAccounts();
-                    var json = JsonSerializer.Serialize<IEnumerable<Account>>(accounts);
-                   
-                    
-                    return context.Response.WriteAsync(json);
-                });
+                
                 endpoints.MapControllers();
             });
             
