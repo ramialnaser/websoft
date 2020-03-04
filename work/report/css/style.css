@@ -8,6 +8,18 @@ body {
     background: #fff;
     width: 700px;
 }
+table {
+  style="width:100%"
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 .duck{
   width: 128px;
   height: 128px;
