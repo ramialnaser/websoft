@@ -26,7 +26,7 @@
             <a href="me.html">Me</a> |
             <a href="report.html">Report</a> |
             <a href="about.html">About</a>
-            <a href="listofSchool.html">listofSchool</a>
+            <a href="listSchool.html">list of School</a>
             <a href="duck.html">Duck</a>
         </nav>
     </header>
@@ -36,7 +36,7 @@
 <script>
     $(document).ready(function () {
         $.getJSON("data/d.json", function (data) {
-
+console.log("RAAA");
             var arrItems = [];
             $.each(data, function (index, value) {
                 arrItems.push(value);
@@ -76,7 +76,7 @@
                 }
             }
 
-            
+
             var divContainer = document.getElementById("showData");
             divContainer.innerHTML = "";
             divContainer.appendChild(table);
